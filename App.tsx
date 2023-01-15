@@ -156,59 +156,87 @@ const App: FC = () => {
     };
 
     const checkVertical = () => {
-        // 0, 3, 6
-        if (Cells[0] && Cells[0] == Cells[3] && Cells[3] == Cells[6]) {
-            //win - to place the left vertical
-            setLeftVertical(1);
-            setWinner(Cells[0]);
-        }
-        //1, 4, 7
-        if (Cells[1] && Cells[1] == Cells[4] && Cells[4] == Cells[7]) {
-            //win - to place the middel vertical
-            setMiddleVertical(1);
-            setWinner(Cells[1]);
-        }
-        //2, 5, 8
-        if (Cells[2] && Cells[2] == Cells[5] && Cells[5] == Cells[8]) {
-            //win - to place the right vertical
-            setRightVertical(1);
-            setWinner(Cells[2]);
+        const verticalWinningOptions = [
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+        ];
+        for (var i = 0; i < verticalWinningOptions.length; ++i) {
+            if (
+                Cells[verticalWinningOptions[i][0]] &&
+                Cells[verticalWinningOptions[i][0]] ==
+                    Cells[verticalWinningOptions[i][1]] &&
+                Cells[verticalWinningOptions[i][1]] ==
+                    Cells[verticalWinningOptions[i][2]]
+            ) {
+                if (i == 0) {
+                    //win - to place the left vertical
+                    setLeftVertical(1);
+                } else if (i == 1) {
+                    //win - to place the middle vertical
+                    setMiddleVertical(1);
+                } else {
+                    //win - to place the right vertical
+                    setRightVertical(1);
+                }
+
+                setWinner(Cells[verticalWinningOptions[i][0]]);
+            }
         }
     };
 
     const checkHorizontal = () => {
-        //0, 1, 2
-        if (Cells[0] && Cells[0] == Cells[1] && Cells[1] == Cells[2]) {
-            //win - to place the top herizontal
-            setTopHorizontal(1);
-            setWinner(Cells[0]);
-        }
-        //3, 4, 5
-        if (Cells[3] && Cells[3] == Cells[4] && Cells[4] == Cells[5]) {
-            //win - to place the middel herizontal
-            setMiddleHorizontal(1);
-            setWinner(Cells[3]);
-        }
-        //6, 7, 8
-        if (Cells[6] && Cells[6] == Cells[7] && Cells[7] == Cells[8]) {
-            //win - to place the bottom herizontal
-            setBottomHorizontal(1);
-            setWinner(Cells[6]);
+        const horizontalWinningOptions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+        ];
+        for (var i = 0; i < horizontalWinningOptions.length; ++i) {
+            if (
+                Cells[horizontalWinningOptions[i][0]] &&
+                Cells[horizontalWinningOptions[i][0]] ==
+                    Cells[horizontalWinningOptions[i][1]] &&
+                Cells[horizontalWinningOptions[i][1]] ==
+                    Cells[horizontalWinningOptions[i][2]]
+            ) {
+                if (i == 0) {
+                    //win - to place the top herizontal
+                    setTopHorizontal(1);
+                } else if (i == 1) {
+                    //win - to place the middel herizontal
+                    setMiddleHorizontal(1);
+                } else {
+                    //win - to place the bottom herizontal
+                    setBottomHorizontal(1);
+                }
+
+                setWinner(Cells[horizontalWinningOptions[i][0]]);
+            }
         }
     };
 
     const checkDiagonals = () => {
-        //0, 4, 8
-        if (Cells[0] && Cells[0] == Cells[4] && Cells[4] == Cells[8]) {
-            //win - to place the main diagonal
-            setMainDiagonal(1);
-            setWinner(Cells[0]);
-        }
-        //2, 4, 6
-        if (Cells[2] && Cells[2] == Cells[4] && Cells[4] == Cells[6]) {
-            //win - to place the secondery diagonal
-            setSeconderyDiagonal(1);
-            setWinner(Cells[2]);
+        const diagonalsWinningOptions = [
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+        for (var i = 0; i < diagonalsWinningOptions.length; ++i) {
+            if (
+                Cells[diagonalsWinningOptions[i][0]] &&
+                Cells[diagonalsWinningOptions[i][0]] ==
+                    Cells[diagonalsWinningOptions[i][1]] &&
+                Cells[diagonalsWinningOptions[i][1]] ==
+                    Cells[diagonalsWinningOptions[i][2]]
+            ) {
+                if (i == 0) {
+                    //win - to place the main diagonal
+                    setMainDiagonal(1);
+                } else if (i == 1) {
+                    //win - to place the secondery diagonal
+                    setSeconderyDiagonal(1);
+                }
+                setWinner(Cells[diagonalsWinningOptions[i][0]]);
+            }
         }
     };
 
